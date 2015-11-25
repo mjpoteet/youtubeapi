@@ -16,7 +16,6 @@ function ExampleService($http) {
   };
 
   return service;
-
 }
 
 export default {

@@ -1,7 +1,15 @@
-<h1 class="heading -large">{{ home.title | ExampleFilter }}</h1>
+<h1>Search Here</h1>
+<search callback-fn="home.submitSearch(query)"></search>
 
-<h3 class="heading -medium">Here is a fancy number served up courtesy of Angular: <span class="number-example">{{ home.number }}</span></h3>
+<!-- TODO: turn this into a directive -->
+<section>
+	<article ng-repeat="item in home.searchResults">
+		
+		<a ng-href="/video/{{item.id.videoId}}"><img ng-src="{{item.snippet.thumbnails.default.url}}" /></a>
 
-<img src="images/angular.png" height="100" example-directive />
-<img src="images/gulp.png" height="100" />
-<img src="images/browserify.png" height="100" />
+		<summary>
+			<h3><a ng-href="/video/{{item.id.videoId}}">{{item.snippet.title}}</a></h3>
+			<p>{{item.snippet.title}}</p>
+		</summary>
+	</article>
+</section>

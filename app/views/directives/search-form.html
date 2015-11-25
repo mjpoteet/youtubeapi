@@ -1,0 +1,6 @@
+
+<form name="searchForm" novalidate>
+  <input input-validate type="text" name="search" placeholder="rick roll?" ng-model="query" ng-minlength="3"/>
+  <p ng-show="search.$error.minlength" class="help-block">Search query is too short.</p>
+  <input type="submit" value="submit" ng-disabled="searchForm.$invalid"/>
+</form>
