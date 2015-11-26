@@ -2,14 +2,4 @@
 <search callback-fn="home.submitSearch(query)"></search>
 
 <!-- TODO: turn this into a directive -->
-<section>
-	<article ng-repeat="item in home.searchResults">
-		
-		<a ng-href="/video/{{item.id.videoId}}"><img ng-src="{{item.snippet.thumbnails.default.url}}" /></a>
-
-		<summary>
-			<h3><a ng-href="/video/{{item.id.videoId}}">{{item.snippet.title}}</a></h3>
-			<p>{{item.snippet.title}}</p>
-		</summary>
-	</article>
-</section>
+<section videolist data="home.searchResults" type="large"></section>

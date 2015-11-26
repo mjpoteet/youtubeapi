@@ -14,7 +14,6 @@ function OnRun($rootScope, AppSettings) {
 
     $rootScope.pageTitle += AppSettings.appTitle;
   });
-
 }
 
 export default OnRun;

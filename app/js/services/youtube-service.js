@@ -1,6 +1,12 @@
 'use strict';
 function YoutubeService($http, $q, AppSettings) {
   'ngInject';
+  
+  var apiUrl = 'https://www.googleapis.com/youtube/v3/',
+      apiKey = '&key=AIzaSyBMKG6jvjbebLsWiijQ7WS_PAlg78bavuY',
+      googleLoginApiKey = '&key=AIzaSyBv1JXypU0YLWTz5lRy4ARVSXO9_CISm68',
+      querySearch = 'search?part=snippet&maxResults=20&order=viewCount&q=',
+      queryFetchVideo = 'videos?part=snippet&id=';
 
   const service = {};
   service.search = function(query) {
@@ -8,7 +14,7 @@ function YoutubeService($http, $q, AppSettings) {
     return $q(function(resolve, reject) {
       $http({
         method: 'GET',
-        url: AppSettings.apiUrl+AppSettings.querySearch+query+AppSettings.apiKey
+        url: apiUrl+querySearch+query+apiKey
         }).then(function successCallback(response) {
           resolve(response);
         }, function errorCallback(response) {
@@ -21,7 +27,7 @@ function YoutubeService($http, $q, AppSettings) {
     return $q(function(resolve, reject) {
       $http({
         method: 'GET',
-        url: AppSettings.apiUrl+AppSettings.queryFetchVideo+query+AppSettings.apiKey
+        url: apiUrl+queryFetchVideo+query+apiKey
         }).then(function successCallback(response) {
           resolve(response);
         }, function errorCallback(response) {
