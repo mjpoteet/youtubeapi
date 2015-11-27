@@ -1,22 +1,27 @@
 'use strict';
 
-HomeCtrl.$inject = ['$scope', 'YoutubeService'];
-
 function HomeCtrl($scope, YoutubeService) {
-  // ViewModel
-  const vm = this;
-  vm.query = '';
-
-  vm.submitSearch = function(query) {
-	var promise = YoutubeService.search(query);
+	'ngInject';
 	
-	promise.then(function(results) {
-		vm.searchResults = results.data.items;
-		console.log(vm.searchResults);
-	}, function(reason) {
+	// ViewModel
+	const vm = this;
+	vm.query = '';
+  
+	var getSearchList = function(query) { 
+		var promise = YoutubeService.fetch('search',  query);
+
+		promise.then(function(results) {
+			vm.searchResults = results.data.items;
+		}, function(reason) {
 		//alert('Failed: ' + reason);
-	});
-  };
+		});
+	};
+
+	getSearchList();
+  
+	vm.submitSearch = function(query) {
+		getSearchList({q: query});
+	};
 }
 export default {
   name: 'HomeCtrl',

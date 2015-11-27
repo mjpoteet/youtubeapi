@@ -7,8 +7,7 @@ function videoList() {
     restrict: 'EA',
     scope: { data:'=', type:'='},
     templateUrl: 'directives/video-list.html',
-    link: function (scope) {
-    }
+    link: function (scope) {}
   };
 }
 

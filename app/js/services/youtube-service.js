@@ -1,20 +1,30 @@
 'use strict';
-function YoutubeService($http, $q, AppSettings) {
+function YoutubeService($http, $q, $rootScope) {
   'ngInject';
   
-  var apiUrl = 'https://www.googleapis.com/youtube/v3/',
-      apiKey = '&key=AIzaSyBMKG6jvjbebLsWiijQ7WS_PAlg78bavuY',
-      googleLoginApiKey = '&key=AIzaSyBv1JXypU0YLWTz5lRy4ARVSXO9_CISm68',
-      querySearch = 'search?part=snippet&maxResults=20&order=viewCount&q=',
-      queryFetchVideo = 'videos?part=snippet&id=';
-
+  const baseUrl = 'https://www.googleapis.com/youtube/v3/';
   const service = {};
-  service.search = function(query) {
-    //TODO: figure out how to get the google (gapi) to work in angular
+
+  var setParams = function(extendedParams) {
+    var defaultParams = {};
+
+    //These two params will 'always' be required.
+    //params passed will over read default params i.e. part can be 
+    defaultParams.key = 'AIzaSyBMKG6jvjbebLsWiijQ7WS_PAlg78bavuY';
+    defaultParams.part = 'snippet';
+
+    return angular.extend({}, defaultParams, extendedParams);
+  };
+
+  service.fetch = function(endpoint, params) {
+    params = setParams(params);
+    //create api end point
+    var url = baseUrl + endpoint + "?" + $rootScope.UTIL.serializeUrl(params);
+    //defferer
     return $q(function(resolve, reject) {
       $http({
         method: 'GET',
-        url: apiUrl+querySearch+query+apiKey
+        url: url
         }).then(function successCallback(response) {
           resolve(response);
         }, function errorCallback(response) {
@@ -23,18 +33,6 @@ function YoutubeService($http, $q, AppSettings) {
       });
   };
 
-  service.fetchVideo = function(query) {
-    return $q(function(resolve, reject) {
-      $http({
-        method: 'GET',
-        url: apiUrl+queryFetchVideo+query+apiKey
-        }).then(function successCallback(response) {
-          resolve(response);
-        }, function errorCallback(response) {
-          reject(response);
-        });
-      });
-  };
   return service;
 
 }

@@ -9,7 +9,7 @@ function VideoCtrl($scope, $state, $sce, YoutubeService) {
   vm.query = $state.params.slug;
 
   var fetchVideo = function() {
-	var promise = YoutubeService.fetchVideo(vm.query);
+	var promise = YoutubeService.fetch('videos', {id:vm.query});
 
 	promise.then(function(results) {
 		vm.info = results.data.items[0];
