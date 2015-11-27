@@ -9,35 +9,45 @@ function HomeCtrl($scope, $state, $location, YoutubeService) {
 	vm.query = $state.params.slug;
 	vm.searchResults = [];
 
-	var nextPageToken = '';
+	var nextPageToken = '',
+		totalResults;
 
-	var getSearchList = function(query) { 
+	var getSearchList = (query) => { 
 		var promise = YoutubeService.fetch('search',  query);
-
+		
 		promise.then(function(results) {
 			nextPageToken = results.data.nextPageToken;
-
-			if(vm.searchResults.length === 0) {
-				vm.searchResults = results.data.items;
-			} else {
-				vm.searchResults.push.apply(vm.searchResults, results.data.items);
-				console.log(results.data.items);
-			}
+			totalResults = results.data.pageInfo.totalResults;
+			vm.searchResults.push.apply(vm.searchResults, results.data.items);
 		}, function(reason) {
 			//alert('Failed: ' + reason);
 		});
 	};
-  
-	vm.submitSearch = function(query) {
-		$location.path("/"+query);
-		getSearchList({q: query});
+
+  	var getCategoryVideos = (query, assignTo) => {
+		var promise = YoutubeService.fetch('search',  query);
+		
+		promise.then(function(results) {
+			vm[assignTo] = results.data.items;
+		}, function(reason) {
+			//alert('Failed: ' + reason);
+		});
+  	};
+	
+	vm.submitSearch = (query) => {
+		vm.query = query;
+		$location.path("/" + vm.query);
+		getSearchList({q: vm.query, maxResults: 20});
 	};
 
-	getSearchList({q: vm.query});
+	getCategoryVideos({channelId:'UC3XTzVzaHQEd30rQbuvCtTQ', maxResults: 10}, 'list1');
 
-	vm.loadMore = function() {
+	getSearchList({q: vm.query, maxResults: 20});
+
+	vm.loadMore = () => {
 		getSearchList({
 			q: vm.query,
+			maxResults: 20,
 			pageToken: nextPageToken
 		});
 	};

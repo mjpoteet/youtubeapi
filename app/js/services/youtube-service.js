@@ -11,6 +11,8 @@ function YoutubeService($http, $q, $rootScope) {
     //These two params will 'always' be required.
     //params passed will over read default params i.e. part can be 
     defaultParams.key = 'AIzaSyBMKG6jvjbebLsWiijQ7WS_PAlg78bavuY';
+    //second api key
+    //defaultParams.key = 'AIzaSyD_JPqzAK1Vo_wfQNq8XTVMwzhQyg0Ei60';
     defaultParams.part = 'snippet';
 
     return angular.extend({}, defaultParams, extendedParams);

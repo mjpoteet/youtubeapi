@@ -2,7 +2,7 @@
 
 function OnRun($rootScope, $location, AppSettings) {
   'ngInject';
-  var classManager = function(state) {
+  var classManager = (state) => {
     $rootScope.showHeaderSearch = true;
     if(state === 'Home') {
       $rootScope.showHeaderSearch = false;
@@ -37,7 +37,7 @@ function OnRun($rootScope, $location, AppSettings) {
   }
 
   //global functions.
-  $rootScope.submitSearch = function(query) {
+  $rootScope.submitSearch = (query) => {
     $rootScope.$apply(function(){
       $location.path("/"+query);
     });

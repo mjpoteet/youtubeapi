@@ -10,7 +10,6 @@ function search() {
     },
     link: (scope, element) => {
       element.on('submit', () => {
-        console.log('hit');
          scope.submitQuery({query: scope.query});
       });
     }

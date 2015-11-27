@@ -7,11 +7,11 @@ function videoList() {
     restrict: 'EA',
     scope: {
     	data:'=',
-    	type:'=',
+    	type:'@',
     	loadMore: '&loadMoreFn',
     },
     templateUrl: 'directives/video-list.html',
-	link: function(scope, element, attrs) {
+	link: (scope, element, attr) => {
 		scope.loadmore = function(){
 			scope.loadMore();
 		}
