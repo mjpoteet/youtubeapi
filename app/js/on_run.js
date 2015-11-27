@@ -1,18 +1,24 @@
 'use strict';
 
-function OnRun($rootScope, AppSettings) {
+function OnRun($rootScope, $location, AppSettings) {
   'ngInject';
-
+  var classManager = function(state) {
+    $rootScope.showHeaderSearch = true;
+    if(state === 'Home') {
+      $rootScope.showHeaderSearch = false;
+    }
+    $rootScope.pageTitle += AppSettings.appTitle;
+  }
+  
   // change page title based on state
   $rootScope.$on('$stateChangeSuccess', (event, toState) => {
     $rootScope.pageTitle = '';
-
     if ( toState.title ) {
       $rootScope.pageTitle += toState.title;
       $rootScope.pageTitle += ' \u2014 ';
     }
-
-    $rootScope.pageTitle += AppSettings.appTitle;
+    
+    classManager(toState.name);
   });
 
   $rootScope.UTIL = {
@@ -29,6 +35,14 @@ function OnRun($rootScope, AppSettings) {
       return str.join("&");
     }
   }
+
+  //global functions.
+  $rootScope.submitSearch = function(query) {
+    $rootScope.$apply(function(){
+      $location.path("/"+query);
+    });
+  };
+
 }
 
 export default OnRun;

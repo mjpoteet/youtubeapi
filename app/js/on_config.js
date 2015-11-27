@@ -7,7 +7,7 @@ function OnConfig($stateProvider, $locationProvider, $sceDelegateProvider, $urlR
 
   $stateProvider
     .state('Home', {
-      url: '/',
+      url: '/:slug',
       controller: 'HomeCtrl as home',
       templateUrl: 'home.html',
       title: 'Home'

@@ -1,8 +1,7 @@
 'use strict';
 
-VideoCtrl.$inject = ['$scope', '$state', '$sce', 'YoutubeService'];
-
 function VideoCtrl($scope, $state, $sce, YoutubeService) {
+  'ngInject';
   // ViewModel
   
   const vm = this;

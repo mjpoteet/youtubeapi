@@ -10,9 +10,11 @@
 
       <link rel="stylesheet" href="css/main.css">
   </head>
+  
   <body>
-      <header>
-        header
+      <header ng-class="headerSearch">
+        <h1><a ng-href="/">home</a></h1>
+        <search ng-show="showHeaderSearch" callback-fn="submitSearch(query)"></search>
       </header>
       <div ui-view></div>
       <footer>

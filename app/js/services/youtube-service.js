@@ -33,6 +33,10 @@ function YoutubeService($http, $q, $rootScope) {
       });
   };
 
+  service.someEvent = function() {
+    console.log('hello world');
+  }
+
   return service;
 
 }
