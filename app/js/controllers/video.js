@@ -10,9 +10,9 @@ function VideoCtrl($scope, $state, $sce, YoutubeService) {
   var fetchVideo = () => {
   	var promise = YoutubeService.fetch('videos', {id:vm.query});
 
-  	promise.then(function(results) {
+  	promise.then((results) => {
   		vm.info = results.data.items[0];
-  	}, function(reason) {
+  	}, (reason) => {
   		//alert('Failed: ' + reason);
   	});
   }

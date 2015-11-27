@@ -1,8 +1,6 @@
 'use strict';
 
-videoList.$inject = [];
-
-function videoList() {
+var videoList = () => {
   return {
     restrict: 'EA',
     scope: {
@@ -12,7 +10,7 @@ function videoList() {
     },
     templateUrl: 'directives/video-list.html',
 	link: (scope, element, attr) => {
-		scope.loadmore = function(){
+		scope.loadmore = () => {
 			scope.loadMore();
 		}
 	}

@@ -15,11 +15,11 @@ function HomeCtrl($scope, $state, $location, YoutubeService) {
 	var getSearchList = (query) => { 
 		var promise = YoutubeService.fetch('search',  query);
 		
-		promise.then(function(results) {
+		promise.then((results) => {
 			nextPageToken = results.data.nextPageToken;
 			totalResults = results.data.pageInfo.totalResults;
 			vm.searchResults.push.apply(vm.searchResults, results.data.items);
-		}, function(reason) {
+		}, (reason) => {
 			//alert('Failed: ' + reason);
 		});
 	};
@@ -27,9 +27,9 @@ function HomeCtrl($scope, $state, $location, YoutubeService) {
   	var getCategoryVideos = (query, assignTo) => {
 		var promise = YoutubeService.fetch('search',  query);
 		
-		promise.then(function(results) {
+		promise.then((results) => {
 			vm[assignTo] = results.data.items;
-		}, function(reason) {
+		}, (reason) => {
 			//alert('Failed: ' + reason);
 		});
   	};
