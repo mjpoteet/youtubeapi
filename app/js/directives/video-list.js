@@ -5,9 +5,17 @@ videoList.$inject = [];
 function videoList() {
   return {
     restrict: 'EA',
-    scope: { data:'=', type:'='},
+    scope: {
+    	data:'=',
+    	type:'=',
+    	loadMore: '&loadMoreFn',
+    },
     templateUrl: 'directives/video-list.html',
-    link: function (scope) {}
+	link: function(scope, element, attrs) {
+		scope.loadmore = function(){
+			scope.loadMore();
+		}
+	}
   };
 }
 

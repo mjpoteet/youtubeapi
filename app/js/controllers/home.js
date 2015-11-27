@@ -20,6 +20,7 @@ function HomeCtrl($scope, $state, $location, YoutubeService) {
 			if(vm.searchResults.length === 0) {
 				vm.searchResults = results.data.items;
 			} else {
+				vm.searchResults.push.apply(vm.searchResults, results.data.items);
 				console.log(results.data.items);
 			}
 		}, function(reason) {
