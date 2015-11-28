@@ -12,10 +12,18 @@ function VideoCtrl($scope, $state, $sce, YoutubeService) {
 
   	promise.then((results) => {
   		vm.info = results.data.items[0];
+
+      var data = {
+        query : vm.query,
+        title : vm.info.snippet.title,
+        thumbnails : vm.info.snippet.thumbnails
+      };
+
+      YoutubeService.setRecentlyWatch(vm.query, data);
   	}, (reason) => {
-  		//alert('Failed: ' + reason);
+  		console.log('Failed: ' + reason);
   	});
-  }
+  };
 
   fetchVideo();
 }

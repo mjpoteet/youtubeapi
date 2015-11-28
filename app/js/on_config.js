@@ -1,10 +1,8 @@
 'use strict';
 
-function OnConfig($stateProvider, $locationProvider, $sceDelegateProvider, $urlRouterProvider) {
+function OnConfig($stateProvider, $locationProvider, $sceDelegateProvider, $urlRouterProvider, localStorageServiceProvider) {
   'ngInject';
-
   $locationProvider.html5Mode(true);
-
   $stateProvider
     .state('Home', {
       url: '/:slug',
@@ -25,6 +23,8 @@ function OnConfig($stateProvider, $locationProvider, $sceDelegateProvider, $urlR
   ]);
 
   $urlRouterProvider.otherwise('/');
+
+  localStorageServiceProvider.setPrefix('recentlyWatched').setStorageType('sessionStorage');
 }
 
 export default OnConfig;

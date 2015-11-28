@@ -1,6 +1,6 @@
 'use strict';
 
-function search() {
+function search () {
   return {
     restrict: 'EA',
     templateUrl: 'directives/search-form.html',

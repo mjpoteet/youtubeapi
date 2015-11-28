@@ -1,6 +1,13 @@
-<h1>Search Here</h1>
-<search callback-fn="home.submitSearch(query)" query="{{home.query}}"></search>
+<div id="home-container">
+	<div class="search-form">
+		<h1>Search Here</h1>
+		<search callback-fn="home.submitSearch(query)" query="{{home.query}}"></search>
+	</div>
 
-<section videolist data="home.searchResults" type="largelist" class="large-list" load-more-fn="home.loadMore()"></section>
+	<section videolist data="home.searchResults" class="results large-list" load-more-fn="home.loadMore()">test</section>
 
-<section videolist data="home.list1" type="verticallist" class="vertical-scroll"></section>
+	<div class="recently-viewed">
+		<h2>recently viewed</h2>
+		<section videolist hideLoadMore="test" data="home.recentlyWatch" class="recently-watch-list"></section>
+	</div>
+</div>

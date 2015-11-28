@@ -1,7 +1,5 @@
 'use strict';
 
-youtubePlayer.$inject = [];
-
 function youtubePlayer() {
   return {
     restrict: 'EA',

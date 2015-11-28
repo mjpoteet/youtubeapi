@@ -1,0 +1,19 @@
+#home-container .search-form {
+	@include span-columns(12);
+	margin:20px 0;
+	padding: 20px;
+	background:#333;
+}
+
+#home-container .results {
+	@include span-columns(8);
+	padding:20px;
+	background:#fff;
+}
+
+#home-container .recently-viewed {
+	@include span-columns(4);
+	min-height:200px;
+	padding:20px;
+	background:#fff;
+}

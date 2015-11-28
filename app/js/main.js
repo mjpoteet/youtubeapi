@@ -9,6 +9,7 @@ import './filters';
 import './controllers';
 import './services';
 import './directives';
+import '../libs/angular-local-storage/dist/angular-local-storage.js';
 
 // create and bootstrap application
 const requires = [
@@ -17,7 +18,8 @@ const requires = [
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
+  'LocalStorageModule'
 ];
 
 // mount on window for testing

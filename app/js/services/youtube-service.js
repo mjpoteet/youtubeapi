@@ -1,5 +1,6 @@
 'use strict';
-function YoutubeService($http, $q, $rootScope) {
+/*global angular*/
+function YoutubeService($http, $q, $rootScope, localStorageService) {
   'ngInject';
   
   const baseUrl = 'https://www.googleapis.com/youtube/v3/';
@@ -9,10 +10,8 @@ function YoutubeService($http, $q, $rootScope) {
     var defaultParams = {};
 
     //These two params will 'always' be required.
-    //params passed will over read default params i.e. part can be 
+    //params passed will over read default params i.e. part can be changed from snippet 
     defaultParams.key = 'AIzaSyBMKG6jvjbebLsWiijQ7WS_PAlg78bavuY';
-    //second api key
-    //defaultParams.key = 'AIzaSyD_JPqzAK1Vo_wfQNq8XTVMwzhQyg0Ei60';
     defaultParams.part = 'snippet';
 
     return angular.extend({}, defaultParams, extendedParams);
@@ -22,25 +21,41 @@ function YoutubeService($http, $q, $rootScope) {
     params = setParams(params);
     //create api end point
     var url = baseUrl + endpoint + "?" + $rootScope.UTIL.serializeUrl(params);
-    //defferer
+
     return $q(function(resolve, reject) {
       $http({
         method: 'GET',
         url: url
-        }).then(function successCallback(response) {
+        }).then(function (response) {
           resolve(response);
-        }, function errorCallback(response) {
+        }, function (response) {
           reject(response);
         });
       });
   };
 
-  service.someEvent = function() {
-    console.log('hello world');
-  }
+  service.setRecentlyWatch = function(id, data) {
+    //localStorageService.clearAll();
+
+    var localStorage = localStorageService.get('recentlyWatched') || {};
+    localStorage[id] = data;
+    localStorageService.set('recentlyWatched', localStorage);
+
+    //console.log(localStorageService.get('recentlyWatched'));
+    //console.log(localStorageService.get('recentlyWatched'));
+    //localStorageService.set('recentlyWatched', update);
+    /*var updateRecentWatch = localStorageService.get('recentlyWatched').splice(0, 0, [data]);
+    localStorageService.set('recentlyWatched', updateRecentWatch);
+    console.log(localStorageService.get('recentlyWatched'));*/
+  };
+
+  service.fetchRecentWatch = function() {
+    console.log(localStorageService.get('recentlyWatched'));
+    return localStorageService.get('recentlyWatched');
+    //console.log(snippet);
+  };
 
   return service;
-
 }
 
 export default {

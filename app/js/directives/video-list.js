@@ -1,19 +1,19 @@
 'use strict';
 
-var videoList = () => {
+function videoList () {
   return {
     restrict: 'EA',
     scope: {
-    	data:'=',
-    	type:'@',
-    	loadMore: '&loadMoreFn',
+      data:'=',
+      hideLoadMore:'@',
+      loadMore: '&loadMoreFn',
     },
     templateUrl: 'directives/video-list.html',
-	link: (scope, element, attr) => {
-		scope.loadmore = () => {
-			scope.loadMore();
-		}
-	}
+    link: (scope/*, element, attr*/) => {
+      scope.loadmore = () => {
+        scope.loadMore();
+      };
+    },
   };
 }
 

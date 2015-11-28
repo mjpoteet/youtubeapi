@@ -1,10 +1,10 @@
-<article ng-repeat="item in data">	
-	<a ng-href="/video/{{item.id.videoId}}"><img ng-src="{{item.snippet.thumbnails.default.url}}" /></a>
+<article ng-repeat="item in data" ng-class="item " class="item">
+	<a ng-href="/video/{{item.id.videoId}}" class="thumb" ng-show="item.snippet.thumbnails.default.url"><img ng-src="{{item.snippet.thumbnails.default.url}}" width="100%" /></a>
 
 	<summary>
-		<h3><a ng-href="/video/{{item.id.videoId}}">{{item.snippet.title}}</a></h3>
-		<p>{{item.snippet.description}}</p>
+		<h3 class="title" ng-show="item.snippet.title"><a ng-href="/video/{{item.id.videoId}}">{{item.snippet.title}}</a></h3>
+		<p class="desc" ng-show="item.snippet.description">{{item.snippet.description}}</p>
 	</summary>
 </article>
 
-<button ng-click="loadmore()" ng-hide="hideLoadMore">Load More</button>
+<button ng-click="loadmore()" class="load-more">Load More</button>
