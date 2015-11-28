@@ -5,6 +5,9 @@ function YoutubeService($http, $q, $rootScope, localStorageService) {
   
   const baseUrl = 'https://www.googleapis.com/youtube/v3/';
   const service = {};
+  const numOfResults = 10;
+  
+  //localStorageService.clearAll();
 
   var setParams = function(extendedParams) {
     var defaultParams = {};
@@ -36,23 +39,40 @@ function YoutubeService($http, $q, $rootScope, localStorageService) {
 
   service.setRecentlyWatch = function(id, data) {
     //localStorageService.clearAll();
+    var localStorage = localStorageService.get('recentlyWatched') || {};    
 
-    var localStorage = localStorageService.get('recentlyWatched') || {};
-    localStorage[id] = data;
+    //turn nested objects into an array
+    var arr = [];
+    for(var item in localStorage) {
+      arr.push(localStorage[item]);
+    }
+
+    //add new item to the top of the array
+    arr.unshift(data);
+    
+    //turn back into objects
+    localStorage = {};
+    for(var i = 0; i < arr.length; i++) {
+      //key is set to query for later use
+      var id = arr[i].snippet.query;
+      if(i<numOfResults) { //limit the number of results
+        localStorage[id] = arr[i]; 
+      } 
+    }
+    //store as a json object
     localStorageService.set('recentlyWatched', localStorage);
-
-    //console.log(localStorageService.get('recentlyWatched'));
-    //console.log(localStorageService.get('recentlyWatched'));
-    //localStorageService.set('recentlyWatched', update);
-    /*var updateRecentWatch = localStorageService.get('recentlyWatched').splice(0, 0, [data]);
-    localStorageService.set('recentlyWatched', updateRecentWatch);
-    console.log(localStorageService.get('recentlyWatched'));*/
   };
 
   service.fetchRecentWatch = function() {
-    console.log(localStorageService.get('recentlyWatched'));
-    return localStorageService.get('recentlyWatched');
-    //console.log(snippet);
+    var results = [];
+    var localStorage = localStorageService.get('recentlyWatched');
+    
+    //turn list of objects into an array so i can use filters
+    //and to stay consistant with how items are delivered to the view
+    for(var item in localStorage) {
+      results.push(localStorage[item]);
+    }
+    return results; 
   };
 
   return service;

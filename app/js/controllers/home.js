@@ -1,6 +1,6 @@
 'use strict';
 
-function HomeCtrl($scope, $state, $location, YoutubeService, localStorageService) {
+function HomeCtrl($scope, $state, $location, YoutubeService) {
 	'ngInject';
 	
 	// ViewModel
@@ -12,6 +12,7 @@ function HomeCtrl($scope, $state, $location, YoutubeService, localStorageService
 	var nextPageToken = '',
 		totalResults;
 
+	//reusable functions
 	var getSearchList = (query) => { 
 		var promise = YoutubeService.fetch('search',  query);
 		
@@ -24,13 +25,12 @@ function HomeCtrl($scope, $state, $location, YoutubeService, localStorageService
 		});
 	};
 
+	//actions
 	vm.submitSearch = (query) => {
 		vm.query = query;
 		$location.path("/" + vm.query);
 		getSearchList({q: vm.query, maxResults: 10});
 	};
-
-	getSearchList({q: vm.query, maxResults: 10});
 
 	vm.loadMore = () => {
 		getSearchList({
@@ -39,7 +39,11 @@ function HomeCtrl($scope, $state, $location, YoutubeService, localStorageService
 			pageToken: nextPageToken
 		});
 	};
-	console.log(localStorageService.get('recentlyWatched'));
+
+	//initialize home page functions
+	vm.recentlyWatched = YoutubeService.fetchRecentWatch().length > 0 ? YoutubeService.fetchRecentWatch() : null;
+	console.log(vm.recentlyWatched);
+	getSearchList({q: vm.query, maxResults: 10});
 }
 export default {
   name: 'HomeCtrl',

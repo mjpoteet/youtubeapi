@@ -7,6 +7,9 @@
 
 #home-container .results {
 	@include span-columns(8);
+	&.full-width {
+		@include span-columns(12);	
+	}
 	padding:20px;
 	background:#fff;
 }
