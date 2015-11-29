@@ -1,4 +1,4 @@
-.large-list {
+.large-list, .small0list {
 	margin-bottom:20px;
 	padding:20px;
 	article.item {
@@ -34,7 +34,21 @@
 	}
 }
 
-.recently-watch-list {
-	@include span-columns(3);
-	button {display:none;}
+.small-list {
+	article.item {
+		width:100%;
+		overflow: hidden;
+		margin-bottom:5px;
+		clear: both;
+	}
+	.thumb {
+		@include span-columns(4);
+	}
+	summary {
+		@include span-columns(8);
+
+		h3 {
+			margin-bottom:10px;
+		}
+	}
 }

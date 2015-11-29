@@ -14,7 +14,7 @@
   <body>
       <header ng-class="headerSearch">
         <h1><a ng-href="/">home</a></h1>
-        <search ng-show="showHeaderSearch" callback-fn="submitSearch(query)"></search>
+        <search ng-class="{'active' : showHeaderSearch}" callback-fn="submitSearch(query)"></search>
       </header>
 
       <div ui-view id="view-container"></div>

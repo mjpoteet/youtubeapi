@@ -49,18 +49,3 @@ export default {
   name: 'HomeCtrl',
   fn: HomeCtrl
 };
-
-
-/*var getCategoryVideos = (query, assignTo) => {
-		var promise = YoutubeService.fetch('search',  query);
-		
-		promise.then((results) => {
-			vm[assignTo] = results.data.items;
-		}, (reason) => {
-			//alert('Failed: ' + reason);
-		});
-  	};
-	
-	getCategoryVideos({channelId:'UC3XTzVzaHQEd30rQbuvCtTQ', maxResults: 3}, 'channel1');
-	getCategoryVideos({channelId:'UC3XTzVzaHQEd30rQbuvCtTQ', maxResults: 3}, 'channel2');
-	getCategoryVideos({channelId:'UC3XTzVzaHQEd30rQbuvCtTQ', maxResults: 3}, 'channel3');*/

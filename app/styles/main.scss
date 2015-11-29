@@ -6,6 +6,7 @@
 @import 'buttons';
 @import 'pages/home';
 @import 'directives/videolist';
+@import 'directives/search';
 
 body {
   font-family: Helvetica, sans-serif;
@@ -33,11 +34,24 @@ header {
 	background:#333;
 	h1 {
 		line-height: 60px;
+		float: left;
 		a {
 			color: #efefef;
 			text-decoration: none;
 		}
 		margin:0 10px;
+	}
+	search {
+		
+		opacity: 0;
+		transition:opacity 0.15s ease-in;
+		&.active {
+			transition:opacity 0.15s ease-in;
+			opacity: 1;
+		}
+		max-width:300px;
+		margin:15px 10px 0 0;
+		float: right;
 	}
 }
 

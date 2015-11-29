@@ -6,13 +6,8 @@ function VideoCtrl($scope, $state, $sce, YoutubeService) {
   
   const vm = this;
   vm.query = $state.params.slug;
-
-  var fetchVideo = () => {
-  	var promise = YoutubeService.fetch('videos', {id:vm.query});
-
-  	promise.then((results) => {
-  		vm.info = results.data.items[0];
-
+  
+  var setRecentViewed = () => {
       var data = {
         snippet : {
           query : vm.query,
@@ -22,9 +17,17 @@ function VideoCtrl($scope, $state, $sce, YoutubeService) {
       };
 
       YoutubeService.setRecentlyWatch(vm.query, data);
-  	}, (reason) => {
-  		console.log('Failed: ' + reason);
-  	});
+  }
+
+  var fetchVideo = () => {
+  	var promise = YoutubeService.fetch('videos', {id:vm.query});
+
+  	promise.then((results) => {
+  		vm.info = results.data.items[0];
+      setRecentViewed();
+    }, (reason) => {
+      console.log('Failed: ' + reason);
+    });
   };
 
   fetchVideo();

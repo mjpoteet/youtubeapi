@@ -1,0 +1,39 @@
+form[name="searchForm"] {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height:30px;
+	padding-right:40px;
+
+	input[type="text"] {
+		width:100%;
+		height: 30px;
+		position: relative;
+		border:0px;
+		border-top-left-radius: 3px;
+		border-bottom-left-radius: 3px;
+		&:focus {
+			outline: none;
+		}
+	}
+	input[type="submit"] {
+		position: absolute;
+		right:0;
+		top: 0;
+		width:40px;
+		height: 30px;
+		background:#efefef url('../images/search.png') no-repeat center center;
+		background-size:auto 100%;
+		transition:background 0.3s ease-in;
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+		&:hover {
+			transition:background 0.3s ease-in;
+			background-color:#e0e0e0;
+		}
+		&:active {
+			transition:background 0.3s ease-in;
+			background-color:#999;			
+		}
+	}
+}
