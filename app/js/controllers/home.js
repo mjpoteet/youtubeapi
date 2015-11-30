@@ -42,7 +42,6 @@ function HomeCtrl($scope, $state, $location, YoutubeService) {
 
 	//initialize home page functions
 	vm.recentlyWatched = YoutubeService.fetchRecentWatch().length > 0 ? YoutubeService.fetchRecentWatch() : null;
-	console.log(vm.recentlyWatched);
 	getSearchList({q: vm.query, maxResults: 10});
 }
 export default {

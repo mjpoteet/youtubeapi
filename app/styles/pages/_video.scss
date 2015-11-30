@@ -1,0 +1,31 @@
+#video-container {
+	padding-top:20px;
+	h2 {
+		margin-bottom:10px;
+	}
+}
+#video-container .results {
+	@include span-columns(8);
+	&.full-width {
+		@include span-columns(12);	
+	}
+	padding:20px;
+	background:#fff;
+}
+
+#video-container .recently-viewed {
+	@include span-columns(4);
+	min-height:200px;
+	padding:20px;
+	background:#fff;
+}
+
+.recently-viewed {
+	h2 {
+		margin-bottom:10px;
+		font-size: $font-size--md;
+		text-transform: uppercase;
+	}
+
+	button {display:none;}
+}

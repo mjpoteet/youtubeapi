@@ -10,6 +10,7 @@ function videoList () {
     },
     templateUrl: 'directives/video-list.html',
     link: (scope/*, element, attr*/) => {
+      console.log(scope.data);
       scope.loadmore = () => {
         scope.loadMore();
       };

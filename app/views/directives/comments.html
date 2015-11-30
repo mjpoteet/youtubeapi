@@ -1,0 +1,9 @@
+<div class="comment" ng-repeat="item in data.items">
+	<img ng-src="{{item.snippet.topLevelComment.snippet.authorProfileImageUrl}}" />
+	<h3>{{item.snippet.topLevelComment.snippet.authorDisplayName}}</h3>
+	<p>{{item.snippet.topLevelComment.snippet.textDisplay}}</p>
+
+	<!-- <button ng-show="item.snippet.totalReplyCount" ng-click="showreplies(item.id)">
+		Replies ({{item.snippet.totalReplyCount}})
+	</button> -->
+</div>

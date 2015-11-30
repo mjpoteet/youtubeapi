@@ -5,8 +5,11 @@
 @import 'vars';
 @import 'buttons';
 @import 'pages/home';
+@import 'pages/video';
 @import 'directives/videolist';
+@import 'directives/youtube-player';
 @import 'directives/search';
+@import 'directives/comments';
 
 body {
   font-family: Helvetica, sans-serif;

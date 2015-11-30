@@ -36,7 +36,7 @@ function YoutubeService($http, $q, $rootScope, localStorageService) {
         });
       });
   };
-
+  
   service.setRecentlyWatch = function(id, data) {
     //localStorageService.clearAll();
     var localStorage = localStorageService.get('recentlyWatched') || {};    
@@ -54,9 +54,9 @@ function YoutubeService($http, $q, $rootScope, localStorageService) {
     localStorage = {};
     for(var i = 0; i < arr.length; i++) {
       //key is set to query for later use
-      var id = arr[i].snippet.query;
+      var vidId = arr[i].snippet.query;
       if(i<numOfResults) { //limit the number of results
-        localStorage[id] = arr[i]; 
+        localStorage[vidId] = arr[i]; 
       } 
     }
     //store as a json object
